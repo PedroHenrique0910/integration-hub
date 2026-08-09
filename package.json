@@ -1,0 +1,30 @@
+{
+  "name": "integration-hub",
+  "version": "1.0.0",
+  "description": "Serviço de integração entre sistemas construído em código (Node.js) — em desenvolvimento",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroHenrique0910/integration-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/PedroHenrique0910/integration-hub/issues"
+  },
+  "homepage": "https://github.com/PedroHenrique0910/integration-hub#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
