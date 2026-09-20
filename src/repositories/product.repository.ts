@@ -25,3 +25,30 @@ export async function findAll(): Promise<Product[]> {
     createdAt: row.created_at,
   }));
 }
+
+export async function findById(id: number): Promise<Product | null> {
+  const [rows] = await pool.query('SELECT * FROM products WHERE id = ?', [id]);
+
+  const products = rows as any[];
+
+  if (products.length === 0) {
+    return null;
+  }
+
+  const row = products[0];
+    return {
+      id: row.id,
+      name: row.name,
+      description: row.description,
+      currentPrice: row.current_price,
+      targetPrice: row.target_price,
+      createdAt: row.created_at,
+    };
+}
+
+export async function updatePrice(id: number, newPrice: number): Promise<void> {
+  await pool.query(
+    'UPDATE products SET current_price = ? WHERE id = ?',
+    [newPrice, id]
+  );
+}
