@@ -13,3 +13,8 @@ app.use(productRoutes);
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
+
+app.post('/telegram/webhook', (req, res) => {
+  console.log('Webhook recebido:', JSON.stringify(req.body, null, 2));
+  res.sendStatus(200);
+});
