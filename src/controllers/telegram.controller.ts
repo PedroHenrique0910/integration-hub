@@ -15,3 +15,23 @@ export async function generateTelegramLink(req: Request, res: Response) {
   }
 
 }
+
+export async function webhookTelegram(req: Request, res: Response) {
+
+  try {
+
+    const chatId = req.body.message.chat.id
+    const connectionId = req.body.message.text
+    const connectionIdFormated = connectionId.replace("/start", '').trim()
+
+    await telegramService.updateTelegramConnection(connectionIdFormated, chatId);
+
+    res.sendStatus(200);
+
+  } catch (error) {
+
+    res.status(500).json({ error: 'Erro ao atualizar o usuario no banco' });
+
+  }
+
+}

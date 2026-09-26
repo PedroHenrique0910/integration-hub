@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { randomUUID } from 'crypto';
-import { createTelegramConnection } from '../repositories/telegram-connection.repository';
+import * as telegramRepository from '../repositories/telegram-connection.repository';
 
 dotenv.config();
 
@@ -23,9 +23,13 @@ export async function sendMessage(text: string): Promise<void> {
 export async function generateConnectionLink(): Promise<string> {
   const codigo = randomUUID();
   
-  await createTelegramConnection({connectionCode: codigo});
+  await telegramRepository.createTelegramConnection({connectionCode: codigo});
 
   const link = `https://t.me/${process.env.TELEGRAM_BOT_USERNAME}?start=${codigo}`;
 
   return link
+}  
+
+export async function updateTelegramConnection(connectionCode: string, chatId: number): Promise<void> {
+  await telegramRepository.updateTelegramConnection(connectionCode, chatId)
 }  
